@@ -1,0 +1,631 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Falling Wishes */
+.falling-wishes-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.falling-wish {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Dancing Script", cursive;
+  font-weight: bold;
+  color: #ff4081;
+  font-size: 18px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  animation: falling linear infinite;
+  z-index: 1000;
+  white-space: nowrap;
+  border: 2px solid rgba(255, 64, 129, 0.3);
+  transform: rotate(var(--rotation));
+  animation: falling var(--duration) linear infinite,
+    glow-wish 2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 5px rgba(255, 64, 129, 0.5));
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(-100px) rotate(var(--rotation));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px)) rotate(var(--rotation));
+    opacity: 0.7;
+  }
+}
+
+@keyframes glow-wish {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 64, 129, 0.6),
+      0 0 10px rgba(255, 64, 129, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.8),
+      0 0 15px rgba(255, 64, 129, 0.6);
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.birthday-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+  animation: card-appear 1.5s ease-out forwards;
+}
+
+/* Header Styles */
+.birthday-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.glowing-text {
+  font-family: "Dancing Script", cursive;
+  font-size: 5rem;
+  color: #ff4081;
+  text-shadow: 0 0 10px rgba(255, 64, 129, 0.6),
+    0 0 20px rgba(255, 64, 129, 0.4), 0 0 30px rgba(255, 64, 129, 0.2);
+  margin-bottom: 10px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.name-text {
+  font-family: "Dancing Script", cursive;
+  font-size: 3.5rem;
+  color: #9c27b0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Message Styles */
+.message {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  margin: 40px 0;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  animation: message-appear 2s ease-out forwards;
+  border: 2px solid rgba(156, 39, 176, 0.3);
+}
+
+.message p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.message .love {
+  margin-top: 25px;
+  font-style: italic;
+  color: #ff4081;
+}
+
+.message .signature {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  color: #9c27b0;
+  margin-top: 5px;
+  line-height: 1.2;
+}
+
+/* Balloon Styles */
+.balloon-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.balloon {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.balloon:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0 0 5px 5px;
+}
+
+.balloon-1 {
+  background: linear-gradient(135deg, #f06, #9f6);
+  top: -30px;
+  left: 5%;
+  animation: float-balloon 12s ease-in-out infinite;
+}
+
+.balloon-2 {
+  background: linear-gradient(135deg, #06f, #f90);
+  top: -40px;
+  left: 25%;
+  animation: float-balloon 15s ease-in-out 1s infinite;
+}
+
+.balloon-3 {
+  background: linear-gradient(135deg, #93f, #f66);
+  top: -20px;
+  left: 50%;
+  animation: float-balloon 10s ease-in-out 2s infinite;
+}
+
+.balloon-4 {
+  background: linear-gradient(135deg, #0cf, #ff0);
+  top: -50px;
+  left: 75%;
+  animation: float-balloon 14s ease-in-out 0.5s infinite;
+}
+
+.balloon-5 {
+  background: linear-gradient(135deg, #f39, #3f6);
+  top: -30px;
+  left: 90%;
+  animation: float-balloon 13s ease-in-out 1.5s infinite;
+}
+
+/* Cake Styles */
+.cake-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  position: relative;
+}
+
+.cake {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  animation: cake-appear 1.5s ease-out forwards,
+    cake-wiggle 5s ease-in-out 2s infinite;
+}
+
+.cake-bottom {
+  position: absolute;
+  width: 140px;
+  height: 50px;
+  background: linear-gradient(to right, #f39, #f63);
+  bottom: 0;
+  left: 5px;
+  border-radius: 10px;
+}
+
+.cake-middle {
+  position: absolute;
+  width: 125px;
+  height: 45px;
+  background: linear-gradient(to right, #fc6, #ff9);
+  bottom: 50px;
+  left: 12.5px;
+  border-radius: 10px;
+}
+
+.cake-top {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  background: linear-gradient(to right, #f6c, #fcf);
+  bottom: 95px;
+  left: 25px;
+  border-radius: 10px;
+}
+
+.candle {
+  position: absolute;
+  width: 10px;
+  height: 35px;
+  background: linear-gradient(to top, #fff, #eee);
+  bottom: 135px;
+  left: 70px;
+  border-radius: 5px;
+}
+
+.flame {
+  position: absolute;
+  width: 15px;
+  height: 25px;
+  background: linear-gradient(to top, #ff9800, #ffeb3b);
+  border-radius: 50% 50% 20% 20%;
+  bottom: 35px;
+  left: -2.5px;
+  animation: flicker 0.5s ease-in-out infinite alternate;
+}
+
+/* Gift Box Styles */
+.gift-box-container {
+  position: relative;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gift-box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  animation: gift-appear 2s ease-out forwards,
+    gift-bounce 5s ease-in-out 3s infinite;
+}
+
+.gift-box-body {
+  position: absolute;
+  width: 100px;
+  height: 80px;
+  background: linear-gradient(135deg, #f06, #90f);
+  bottom: 0;
+  border-radius: 10px;
+}
+
+.gift-lid {
+  position: absolute;
+  width: 110px;
+  height: 25px;
+  background: linear-gradient(135deg, #90f, #f06);
+  bottom: 80px;
+  left: -5px;
+  border-radius: 5px;
+  animation: lid-shake 10s ease-in-out 5s infinite;
+}
+
+.gift-ribbon {
+  position: absolute;
+  width: 20px;
+  height: 90px;
+  background: linear-gradient(to top, #ff0, #f90);
+  bottom: 0;
+  left: 40px;
+  z-index: 2;
+}
+
+.gift-ribbon:before,
+.gift-ribbon:after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #ff0, #f90);
+  border-radius: 50%;
+  top: -20px;
+}
+
+.gift-ribbon:before {
+  left: -30px;
+}
+
+.gift-ribbon:after {
+  left: 10px;
+}
+
+/* Confetti Styles */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Stars Styles */
+.stars-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stars {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+}
+
+.star1 {
+  top: 10%;
+  left: 10%;
+  animation: twinkle 4s infinite;
+}
+
+.star2 {
+  top: 20%;
+  left: 80%;
+  animation: twinkle 3s 0.5s infinite;
+}
+
+.star3 {
+  top: 60%;
+  left: 40%;
+  animation: twinkle 5s 1s infinite;
+}
+
+.star4 {
+  top: 80%;
+  left: 15%;
+  animation: twinkle 3.5s 0.7s infinite;
+}
+
+.star5 {
+  top: 30%;
+  left: 90%;
+  animation: twinkle 4.5s 1.5s infinite;
+}
+
+/* Keyframe Animations */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 64, 129, 0.6),
+      0 0 20px rgba(255, 64, 129, 0.4), 0 0 30px rgba(255, 64, 129, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(255, 64, 129, 0.8),
+      0 0 30px rgba(255, 64, 129, 0.6), 0 0 45px rgba(255, 64, 129, 0.4);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes card-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes message-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float-balloon {
+  0%,
+  100% {
+    transform: translateY(0) rotate(3deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-3deg);
+  }
+}
+
+@keyframes cake-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cake-wiggle {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    box-shadow: 0 0 15px 5px rgba(255, 152, 0, 0.6),
+      0 0 30px 10px rgba(255, 152, 0, 0.3);
+    height: 25px;
+    transform: rotate(-5deg);
+  }
+  25% {
+    box-shadow: 0 0 20px 7px rgba(255, 152, 0, 0.7),
+      0 0 35px 12px rgba(255, 152, 0, 0.4);
+    height: 28px;
+    transform: rotate(5deg);
+  }
+  50% {
+    box-shadow: 0 0 10px 3px rgba(255, 152, 0, 0.5),
+      0 0 25px 8px rgba(255, 152, 0, 0.2);
+    height: 23px;
+    transform: rotate(-2deg);
+  }
+  75% {
+    box-shadow: 0 0 15px 5px rgba(255, 152, 0, 0.6),
+      0 0 30px 10px rgba(255, 152, 0, 0.3);
+    height: 27px;
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes gift-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes gift-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes lid-shake {
+  0%,
+  90%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  92.5% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+  95% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  97.5% {
+    transform: translateY(-5px) rotate(-3deg);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .glowing-text {
+    font-size: 3.5rem;
+  }
+
+  .name-text {
+    font-size: 2.5rem;
+  }
+
+  .message p {
+    font-size: 1rem;
+  }
+
+  .cake {
+    transform: scale(0.8);
+  }
+
+  .gift-box {
+    transform: scale(0.8);
+  }
+
+  /* Reduce size of falling wishes on tablet */
+  .falling-wish {
+    font-size: 14px;
+    padding: 8px 12px;
+    opacity: 0.9;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .glowing-text {
+    font-size: 2.5rem;
+  }
+
+  .name-text {
+    font-size: 2rem;
+  }
+
+  .message p {
+    font-size: 0.9rem;
+  }
+
+  .cake {
+    transform: scale(0.7);
+  }
+
+  .gift-box {
+    transform: scale(0.7);
+  }
+
+  /* Make falling wishes much smaller on mobile */
+  .falling-wish {
+    font-size: 12px;
+    padding: 6px 10px;
+    opacity: 0.8;
+    z-index: 100; /* Lower z-index on mobile */
+  }
+}
