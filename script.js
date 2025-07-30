@@ -1,5 +1,13 @@
 // Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if on mobile for all effects
+    const isMobile = window.innerWidth <= 768;
+    
+    // Adjust stars for mobile (hide some stars on mobile)
+    if (isMobile) {
+        adjustStarsForMobile();
+    }
+    
     // Create falling wishes
     createFallingWishes();
     
@@ -50,7 +58,7 @@ function createFallingWishes() {
     
     // Create wishes that fall from the top
     // Fewer wishes on mobile
-    const wishCount = isMobile ? 8 : 30;
+    const wishCount = isMobile ? 4 : 30;
     
     for (let i = 0; i < wishCount; i++) {
         setTimeout(() => {
@@ -89,7 +97,7 @@ function createFallingWishes() {
     }
     
     // Continue creating wishes at intervals - longer on mobile
-    setInterval(() => createWishBatch(isMobile), isMobile ? 25000 : 15000);
+    setInterval(() => createWishBatch(isMobile), isMobile ? 30000 : 15000);
 }
 
 function createWishBatch(isMobile = false) {
@@ -115,7 +123,7 @@ function createWishBatch(isMobile = false) {
     ];
     
     // Create a batch of wishes - fewer on mobile
-    const batchSize = isMobile ? 3 : 10;
+    const batchSize = isMobile ? 2 : 10;
     
     for (let i = 0; i < batchSize; i++) {
         setTimeout(() => {
@@ -159,8 +167,13 @@ function createConfetti() {
     const confettiContainer = document.querySelector('.confetti-container');
     const colors = ['#ff4081', '#9c27b0', '#3f51b5', '#03a9f4', '#4caf50', '#ffeb3b', '#ff9800'];
     
-    // Create 100 confetti particles
-    for (let i = 0; i < 100; i++) {
+    // Check if mobile
+    const isMobile = window.innerWidth <= 768;
+    
+    // Create confetti particles - much fewer on mobile
+    const confettiCount = isMobile ? 25 : 100;
+    
+    for (let i = 0; i < confettiCount; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
         
@@ -168,7 +181,7 @@ function createConfetti() {
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         const size = Math.random() * 10 + 5;
         const left = Math.random() * 100;
-        const animationDuration = Math.random() * 3 + 2;
+        const animationDuration = isMobile ? (Math.random() * 5 + 5) : (Math.random() * 3 + 2);
         const animationDelay = Math.random() * 5;
         
         // Apply styling
@@ -209,7 +222,12 @@ function createConfetti() {
 // Function to create sparkles
 function createSparkles() {
     const card = document.querySelector('.birthday-card');
-    const sparkleCount = 30;
+    
+    // Check if mobile
+    const isMobile = window.innerWidth <= 768;
+    
+    // Fewer sparkles on mobile
+    const sparkleCount = isMobile ? 10 : 30;
     
     for (let i = 0; i < sparkleCount; i++) {
         const sparkle = document.createElement('div');
@@ -334,4 +352,21 @@ function cakeAnimation() {
     if (!exists) {
         styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
     }
+}
+
+// Function to adjust stars on mobile devices
+function adjustStarsForMobile() {
+    // Hide some stars on mobile to reduce visual clutter
+    const starsToHide = document.querySelectorAll('.stars.star2, .stars.star4');
+    starsToHide.forEach(star => {
+        star.style.display = 'none';
+    });
+    
+    // Make remaining stars smaller and less bright
+    const remainingStars = document.querySelectorAll('.stars:not(.star2):not(.star4)');
+    remainingStars.forEach(star => {
+        star.style.width = '2px';
+        star.style.height = '2px';
+        star.style.boxShadow = '0 0 5px 1px rgba(255, 255, 255, 0.5)';
+    });
 }
